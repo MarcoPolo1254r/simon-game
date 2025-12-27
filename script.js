@@ -1,6 +1,8 @@
 const colors = [1,2,3,4];
 let round = 1;
 let gameSequence = [];
+let playerSequence = [];
+let isShowingSequence = true;
 
 const redButton = document.querySelector('#redButton');
 const blueButton = document.querySelector('#blueButton');
@@ -31,24 +33,35 @@ function getColorSequence (round) {
 }
 
 function showSequence(){
-    gameSequence = getColorSequence(10);
+    gameSequence = getColorSequence(5);
     gameSequence.forEach((value,index) => {
         setTimeout(() => {
             let button = buttonMap[value];
             button.style.backgroundColor = button.dataset.color;
             setTimeout(() => {
                 button.style.backgroundColor = 'white';
+                if (index === gameSequence.length -1){
+                    isShowingSequence = false;
+                    console.log ("player can play")
+                }
             }, 700);            
         }, index * 1400);
     })    
     return
 };
 
+function handlePlayerInput(input) {
+    if (isShowingSequence) {
+        alert('Wait until the full sequence is shown')
+        return
+    }
+        playerSequence.push(input);
+        console.log(playerSequence);
+};
 
+redButton.addEventListener('click',() => handlePlayerInput(1));
+blueButton.addEventListener('click',() => handlePlayerInput(2));
+greenButton.addEventListener('click',() => handlePlayerInput(3));
+yellowButton.addEventListener('click',() => handlePlayerInput(4));
 
-function play(){
-    showSequence()
-    return ;
-}
-
-play();
+showSequence();
