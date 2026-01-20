@@ -1,18 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Simon Game</title>
     <link rel="stylesheet" href="style.css">
     <script src="./script.js" defer></script>
 </head>
+
 <body>
-    <div class="container">
-        <button id="redButton" data-color="red">RED</button>
-        <button id="blueButton" data-color="blue">BLUE</button>
-        <button id="greenButton" data-color="green">GREEN</button>
-        <button id="yellowButton" data-color="yellow">YELLOW</button>
+    <header>
+        <h1>Simon Game</h1>
+        <div class="score-container">
+            <p id="roundDisplay">Round: 0</p>
+            <p id="bestScore">Best: 0</p>
+            <p id="speedDisplay">Speed: +0%</p>
+        </div>
+        <div class="header-buttons">
+            <button id="startBtn" class="start-btn">Start</button>
+            <button id="resetBtn" class="reset-btn">Reset</button>
+            <button id="rulesBtn" class="rules-btn">Rules</button>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="button-grid">
+            <button id="redButton" data-color="red" class="game-btn"></button>
+            <button id="blueButton" data-color="blue" class="game-btn"></button>
+            <button id="greenButton" data-color="green" class="game-btn"></button>
+            <button id="yellowButton" data-color="yellow" class="game-btn"></button>
+        </div>
+    </main>
+
+    <div id="rulesModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Game Rules</h2>
+            <div class="rules-content">
+                <p><strong>Objective:</strong> Memorize and repeat the color sequence. Reach Round 20 to win!</p>
+
+                <p><strong>How to Play:</strong></p>
+                <ol>
+                    <li>Watch the sequence of colored buttons light up</li>
+                    <li>Wait until the sequence finishes playing</li>
+                    <li>Click the buttons in the same order</li>
+                    <li>Each round adds one more color to remember</li>
+                    <li>Complete all 20 rounds to win the game!</li>
+                </ol>
+
+                <p><strong>Game Features:</strong></p>
+                <ul>
+                    <li><strong>Progressive Difficulty:</strong> Speed increases by 3% each round (max 100%)</li>
+                    <li><strong>Best Score:</strong> Your highest round is tracked during the session</li>
+                    <li><strong>Auto-Restart:</strong> Game restarts automatically if you make a mistake</li>
+                </ul>
+
+                <p><strong>Tips:</strong></p>
+                <ul>
+                    <li>Focus on the pattern, not individual colors</li>
+                    <li>Use visual memory techniques</li>
+                    <li>Stay calm as the speed increases!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="gameOverModal" class="modal hidden">
+        <div class="modal-content game-over-content">
+            <span class="close-game-over">&times;</span>
+            <h2 class="game-over-title">Game Over!</h2>
+            <p class="game-over-message">You lost at round <span id="finalRound">0</span></p>
+            <p class="game-over-instruction">Press Start to play again</p>
+        </div>
     </div>
 </body>
+
 </html>
